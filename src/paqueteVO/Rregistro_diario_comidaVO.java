@@ -22,5 +22,10 @@ public class Rregistro_diario_comidaVO {
 
     public void setId_comida(int id_comida) {
         this.id_comida = id_comida;
-    }   
+    }
+
+    @Override
+    public String toString() {
+        return "Rregistro_diario_comidaVO [registro_id=" + registro_id + ", id_comida=" + id_comida + "]";
+    }
 }

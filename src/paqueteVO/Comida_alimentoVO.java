@@ -24,4 +24,9 @@ public class Comida_alimentoVO {
     public void setId_alimento(int id_alimento) {
         this.id_alimento = id_alimento;
     }
+
+    @Override
+    public String toString() {
+        return "Comida_alimentoVO [id_comida=" + id_comida + ", id_alimento=" + id_alimento + "]";
+    }
 }

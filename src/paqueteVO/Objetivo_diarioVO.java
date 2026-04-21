@@ -52,5 +52,11 @@ public class Objetivo_diarioVO{
 
     public void setGrasas(double grasas) {
         this.grasas = grasas;
-    }   
+    }
+
+    @Override
+    public String toString() {
+        return "Objetivo_diarioVO [id_user=" + id_user + ", kcal=" + kcal + ", proteinass=" + proteinass
+            + ", carbohidratos=" + carbohidratos + ", grasas=" + grasas + "]";
+    }  
 }

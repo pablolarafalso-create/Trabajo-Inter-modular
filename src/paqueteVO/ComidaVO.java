@@ -32,4 +32,9 @@ public class ComidaVO {
     public void setVisiblesn(char visiblesn) {
         this.visiblesn = visiblesn;
     }
+
+    @Override
+    public String toString() {
+        return "ComidaVO [id_comida=" + id_comida + ", tipoComida=" + tipoComida + ", visiblesn=" + visiblesn + "]";
+    }
 }

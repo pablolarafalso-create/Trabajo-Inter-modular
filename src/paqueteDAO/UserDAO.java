@@ -1,10 +1,10 @@
 package paqueteDAO;
 
-import paqueteVO.UserVO;
 import PaqueteControl.Conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import paqueteVO.UserVO;
 
 public class UserDAO {
 

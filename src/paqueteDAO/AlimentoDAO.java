@@ -11,6 +11,7 @@ import paqueteVO.AlimentoVO;
 public class AlimentoDAO {
 
     public List<AlimentoVO> obtenerAlimentos() {
+        //hacemos la consulta sql
         String consulta = "SELECT id_alimento, nombre, kcal, proteinas, carbohidratos, grasas FROM alimento";
         List<AlimentoVO> listaAlimentos = new ArrayList<>();
 
@@ -44,7 +45,7 @@ public class AlimentoDAO {
     public AlimentoVO encontrarPorId(double id) {
         String consulta = "SELECT id_alimento, nombre, kcal, proteinas, carbohidratos, grasas FROM alimento WHERE id_alimento = ?";
         try (Connection con = Conexion.getConnection();
-             PreparedStatement ps = con.prepareStatement(consulta)) {
+            PreparedStatement ps = con.prepareStatement(consulta)) {
             ps.setDouble(1, id);
             try (ResultSet resultado = ps.executeQuery()) {
                 if (resultado.next()) {

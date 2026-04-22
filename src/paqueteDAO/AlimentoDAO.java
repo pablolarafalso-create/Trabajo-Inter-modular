@@ -1,13 +1,12 @@
 package paqueteDAO;
 
-import paqueteVO.AlimentoVO;
 import PaqueteControl.Conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import paqueteVO.AlimentoVO;
 
 public class AlimentoDAO {
 

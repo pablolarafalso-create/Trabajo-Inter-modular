@@ -9,17 +9,7 @@ import paqueteVO.UserVO;
 import java.sql.Connection;
 import java.util.List;
 import java.util.Scanner;
-<<<<<<< HEAD
-=======
 
-<<<<<<< HEAD
-import PaqueteControl.Conexion;
-
->>>>>>> master
-import java.sql.Connection;
-
-=======
->>>>>>> master
 public class AppController {
 
     private final Scanner sc = new Scanner(System.in);
@@ -39,13 +29,6 @@ public class AppController {
                     listarUsuarios();
                     break;
                 case 2:
-<<<<<<< HEAD
-                    registrarComida();
-                    break;
-                case 3:
-                    verMacros();
-                    break;
-=======
                     registrarDieta();
                     break;
                 case 3:
@@ -63,7 +46,6 @@ public class AppController {
                 case 7:
                     registroDiario();
                     break;
->>>>>>> master
                 case 0:
                     System.out.println("Saliendo...");
                     break;
@@ -77,17 +59,12 @@ public class AppController {
     private void mostrarMenu() {
         System.out.println("\n=== FOOD TRACKER ===");
         System.out.println("1. Ver usuarios");
-<<<<<<< HEAD
-        System.out.println("2. Registrar comida");
-        System.out.println("3. Ver macros");
-=======
         System.out.println("2. Registrar dieta");
         System.out.println("3. Registrar comida");
         System.out.println("4. Registrar alimento");
         System.out.println("5. Ver macros");
         System.out.println("6. Objetivo diario");
         System.out.println("7. Registro");
->>>>>>> master
         System.out.println("0. Salir");
     }
 
@@ -150,4 +127,3 @@ public class AppController {
         System.out.println("Registro diario: no implementado");
     }
 }
-

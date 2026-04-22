@@ -6,12 +6,12 @@ public class Objetivo_diarioVO{
     private double carbohidratos;
     private double grasas;
 
-    public Objetivo_diarioVO(double carbohidratos, double grasas, int id_user, int kcal, double proteinass) {
+    public Objetivo_diarioVO(double carbohidratos, double grasas, int id_user, int kcal, double proteinas) {
         this.carbohidratos = carbohidratos;
         this.grasas = grasas;
         this.id_user = id_user;
         this.kcal = kcal;
-        this.proteinas = proteinass;
+        this.proteinas = proteinas;
     }
 
     public int getId_user() {
@@ -22,7 +22,7 @@ public class Objetivo_diarioVO{
         return kcal;
     }
 
-    public double getProteinass() {
+    public double getProteinas() {
         return proteinas;
     }
 
@@ -42,7 +42,7 @@ public class Objetivo_diarioVO{
         this.kcal = kcal;
     }
 
-    public void setProteinass(double proteinas) {
+    public void setProteinas(double proteinas) {
         this.proteinas = proteinas;
     }
 
@@ -52,5 +52,11 @@ public class Objetivo_diarioVO{
 
     public void setGrasas(double grasas) {
         this.grasas = grasas;
-    }   
+    }
+
+    @Override
+    public String toString() {
+        return "Objetivo_diarioVO [id_user=" + id_user + ", kcal=" + kcal + ", proteinas=" + proteinas
+            + ", carbohidratos=" + carbohidratos + ", grasas=" + grasas + "]";
+    }  
 }

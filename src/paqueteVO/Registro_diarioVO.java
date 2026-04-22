@@ -36,4 +36,10 @@ public class Registro_diarioVO {
     public void setId_user(int id_user) {
         this.id_user = id_user;
     }
+
+    @Override
+    public String toString() {
+        return "Registro_diarioVO [registro_id=" + registro_id + ", hora_registro=" + hora_registro + ", id_user="
+            + id_user + "]";
+    }
 }

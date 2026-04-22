@@ -65,4 +65,10 @@ public class AlimentoVO {
     public void setGrasas(double grasas) {
         this.grasas = grasas;
     }
+
+    @Override
+    public String toString() {
+        return "AlimentoVO [id_alimento=" + id_alimento + ", nombre=" + nombre + ", kcal=" + kcal + ", proteinas="
+            + proteinas + ", carbohidratos=" + carbohidratos + ", grasas=" + grasas + "]";
+    }
 }

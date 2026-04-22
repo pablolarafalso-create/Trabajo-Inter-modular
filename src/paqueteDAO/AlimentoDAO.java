@@ -11,7 +11,6 @@ import paqueteVO.AlimentoVO;
 public class AlimentoDAO {
 
     public List<AlimentoVO> obtenerAlimentos() {
-        //hacemos la consulta sql
         String consulta = "SELECT id_alimento, nombre, kcal, proteinas, carbohidratos, grasas FROM alimento";
         List<AlimentoVO> listaAlimentos = new ArrayList<>();
 

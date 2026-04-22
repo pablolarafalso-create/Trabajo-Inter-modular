@@ -38,7 +38,6 @@ public class Comida_alimentoVO {
     @Override
     public String toString() {
         return "Comida_alimentoVO [id_comida=" + id_comida + ", id_alimento=" + id_alimento + ", cantidad=" + cantidad
-                + "]";
+            + "]";
     }
-
 }

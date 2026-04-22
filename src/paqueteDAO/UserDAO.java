@@ -1,9 +1,16 @@
 package paqueteDAO;
 
+<<<<<<< HEAD
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import paqueteControl.Conexion;
+=======
+import PaqueteControl.Conexion;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+>>>>>>> master
 import paqueteVO.UserVO;
 
 public class UserDAO {

@@ -1,12 +1,17 @@
 package paqueteDAO;
 
+import paqueteVO.AlimentoVO;
+import PaqueteControl.Conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+<<<<<<< HEAD
 import paqueteControl.Conexion;
 import paqueteVO.AlimentoVO;
+=======
+>>>>>>> master
 
 public class AlimentoDAO {
 

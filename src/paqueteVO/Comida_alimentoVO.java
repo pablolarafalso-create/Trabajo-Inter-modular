@@ -31,12 +31,6 @@ public class Comida_alimentoVO {
         this.id_alimento = id_alimento;
     }
 
-<<<<<<< HEAD
-    @Override
-    public String toString() {
-        return "Comida_alimentoVO [id_comida=" + id_comida + ", id_alimento=" + id_alimento + "]";
-    }
-=======
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
     }
@@ -44,8 +38,6 @@ public class Comida_alimentoVO {
     @Override
     public String toString() {
         return "Comida_alimentoVO [id_comida=" + id_comida + ", id_alimento=" + id_alimento + ", cantidad=" + cantidad
-                + "]";
+            + "]";
     }
-
->>>>>>> master
 }

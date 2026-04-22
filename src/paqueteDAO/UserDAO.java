@@ -1,5 +1,6 @@
 package paqueteDAO;
 
+
 import PaqueteControl.Conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,6 +19,7 @@ public class UserDAO {
             ps.setString(1, user.getNombre());
             ps.setString(2, user.getApellidos());
             ps.setString(3, user.getEmail());
+            ps.setString(4, user.getContraseña());
             ps.setString(4, user.getContraseña());
             
             int filasAfectadas = ps.executeUpdate();

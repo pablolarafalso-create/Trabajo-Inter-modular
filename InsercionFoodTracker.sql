@@ -29,7 +29,7 @@ foreign key (id_user) references usuario(id_user)
 create table comida(
 id_comida int auto_increment primary key,
 tipo_comida varchar(20),
-visiblesn char not null
+visiblesn char(1) not null
 );
 create table alimento(
 id_alimento int auto_increment primary key,

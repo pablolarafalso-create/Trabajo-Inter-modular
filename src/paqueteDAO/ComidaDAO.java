@@ -77,7 +77,7 @@ public class ComidaDAO {
         return lista;
     }
 
-    // API usada desde AppController (conexiÃ³n externa)
+    //almacena los valores de crear comida
     public void insertarComida(Connection conn, ComidaVO comida) throws SQLException {
         String sql = "INSERT INTO comida (tipo_comida, visiblesn) VALUES (?, ?)";
 
@@ -88,7 +88,7 @@ public class ComidaDAO {
         }
     }
 
-    // Alternativa cÃ³moda: abre conexiÃ³n internamente
+    //inserta las comidas
     public void insert(ComidaVO comida) {
         try (Connection conn = Conexion.getConnection()) {
             insertarComida(conn, comida);

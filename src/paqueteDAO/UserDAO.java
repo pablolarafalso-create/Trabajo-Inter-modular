@@ -1,8 +1,6 @@
 package paqueteDAO;
 
 import PaqueteControl.Conexion;
-import paqueteVO.UserVO;
-
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -10,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+import paqueteVO.UserVO;
 
 public class UserDAO {
 
@@ -18,7 +17,7 @@ public class UserDAO {
         String sql = "SELECT id_user, nombre, apellidos, email, contraseÃ±a, fecha_nacimiento, altura, peso, fechaCreacion, racha FROM usuario";
 
         try (PreparedStatement ps = con.prepareStatement(sql);
-             ResultSet rs = ps.executeQuery()) {
+            ResultSet rs = ps.executeQuery()) {
 
             while (rs.next()) {
                 Timestamp ts = rs.getTimestamp("fechaCreacion");
@@ -31,6 +30,7 @@ public class UserDAO {
                     rs.getDate("fecha_nacimiento").toLocalDate(),
                     rs.getDouble("altura"),
                     rs.getDouble("peso"),
+                    //ts es una abreviatura de Timestamp. 
                     ts != null ? ts.toLocalDateTime().toLocalDate() : null,
                     rs.getInt("racha")
                 ));
@@ -45,10 +45,10 @@ public class UserDAO {
 
     // MÃ©todo para registrar un usuario
     public boolean registrarUsuario(UserVO user) {
-        String sqluser = "INSERT INTO usuario (apellidos, contraseÃ±a, email, nombre, fecha_nacimiento, altura, peso, fechaCreacion, racha) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sqluser = "INSERT INTO usuario (apellidos, contrasena, email, nombre, fecha_nacimiento, altura, peso, fechaCreacion, racha) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection con = Conexion.getConnection();
-             PreparedStatement ps = con.prepareStatement(sqluser)) {
+            PreparedStatement ps = con.prepareStatement(sqluser)) {
 
             ps.setString(1, user.getApellidos());
             ps.setString(2, user.getContrasena());
@@ -71,10 +71,10 @@ public class UserDAO {
 
     // MÃ©todo que busca si un usuario existe
     public UserVO validarUsuario(String email, String password) {
-        String sqluser = "SELECT * FROM usuario WHERE email = ? AND contraseÃ±a = ?";
+        String sqluser = "SELECT * FROM usuario WHERE email = ? AND contrasena = ?";
 
         try (Connection con = Conexion.getConnection();
-             PreparedStatement ps = con.prepareStatement(sqluser)) {
+            PreparedStatement ps = con.prepareStatement(sqluser)) {
 
             ps.setString(1, email);
             ps.setString(2, password);
@@ -103,12 +103,12 @@ public class UserDAO {
     }
 
     public boolean actualizarUsuario(UserVO user){
-        String sqluser = "UPDATE usuario SET nombre = ?, apellidos = ?, email = ?, contraseÃ±a = ?, " +
+        String sqluser = "UPDATE usuario SET nombre = ?, apellidos = ?, email = ?, contrasena = ?, " +
             "fecha_nacimiento = ?, altura = ?, peso = ?, fechaCreacion = ?, racha = ? " +
             "WHERE id_user = ?";
 
         try (Connection con = Conexion.getConnection();
-             PreparedStatement ps = con.prepareStatement(sqluser)){
+            PreparedStatement ps = con.prepareStatement(sqluser)){
 
             ps.setString(1, user.getNombre());
             ps.setString(2, user.getApellidos());

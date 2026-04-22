@@ -1,29 +1,43 @@
-package PaqueteDAO;
+package paqueteDAO;
 
+import paqueteVO.AlimentoVO;
+import PaqueteControl.Conexion;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.sql.Statement;
 
 public class AlimentoDAO {
-    public List<AlimentoDAO> obtenerAlimentos(String alimentos)throws SQLException{
-        String consulta = "Select  from alimento";
 
+    public List<AlimentoVO> obtenerAlimentos() {
+        String consulta = "SELECT id_alimento, nombre, kcal, proteinas, carbohidratos, grasas FROM alimento";
+        List<AlimentoVO> listaAlimentos = new ArrayList<>();
 
-        List<AlimentoDAO> alimento = new ArrayList<>();
+        // Usamos try-with-resources para cerrar la conexión automáticamente al terminar
+        try (Connection con = Conexion.getConnection();
+            PreparedStatement ps = con.prepareStatement(consulta);
+            ResultSet resultado = ps.executeQuery()) {
 
-        try (Statement stmt = alimentos.createStatement();
-            ResultSet resultado = stmt.executeQuery(consulta)){
-
-            AlimentoDAO alim = new AlimentoDAO(id_alimento);
-            alimento.add(alim);
-
+            while (resultado.next()) {
+                // Creamos el objeto VO con los datos obtenidos
+                AlimentoVO alim = new AlimentoVO(
+                    resultado.getDouble("id_alimento"), 
+                    resultado.getDouble("nombre"), 
+                    resultado.getInt("Kcal"),  
+                    resultado.getInt("proteinas"), 
+                    resultado.getString("carbohidratos"), 
+                    resultado.getDouble("grasas") 
+                );
+                
+                listaAlimentos.add(alim);
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
+            // Dependiendo de tu arquitectura, podrías querer lanzar una RuntimeException aquí
         }
-        return alimento;
+        
+        return listaAlimentos;
     }
 }

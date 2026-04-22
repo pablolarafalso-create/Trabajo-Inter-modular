@@ -1,6 +1,5 @@
 package paqueteDAO;
 
-
 import PaqueteControl.Conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -19,8 +18,7 @@ public class UserDAO {
             ps.setString(1, user.getNombre());
             ps.setString(2, user.getApellidos());
             ps.setString(3, user.getEmail());
-            ps.setString(4, user.getContraseña());
-            ps.setString(4, user.getContraseña());
+            ps.setString(4, user.getContraseña()); // ¡OJO: Ver nota de seguridad abajo!
             
             int filasAfectadas = ps.executeUpdate();
             return filasAfectadas > 0;
@@ -57,4 +55,4 @@ public class UserDAO {
         }
         return null; // Retorna null si no encuentra el usuario
     }
-} 
+}

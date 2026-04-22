@@ -2,7 +2,7 @@ package paqueteVO;
 public class Objetivo_diarioVO{
     private int id_user;
     private int kcal;
-    private double proteinass;
+    private double proteinas;
     private double carbohidratos;
     private double grasas;
 
@@ -11,7 +11,7 @@ public class Objetivo_diarioVO{
         this.grasas = grasas;
         this.id_user = id_user;
         this.kcal = kcal;
-        this.proteinass = proteinass;
+        this.proteinas = proteinass;
     }
 
     public int getId_user() {
@@ -23,7 +23,7 @@ public class Objetivo_diarioVO{
     }
 
     public double getProteinass() {
-        return proteinass;
+        return proteinas;
     }
 
     public double getCarbohidratos() {
@@ -42,8 +42,8 @@ public class Objetivo_diarioVO{
         this.kcal = kcal;
     }
 
-    public void setProteinass(double proteinass) {
-        this.proteinass = proteinass;
+    public void setProteinass(double proteinas) {
+        this.proteinas = proteinas;
     }
 
     public void setCarbohidratos(double carbohidratos) {

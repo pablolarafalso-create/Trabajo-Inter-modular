@@ -161,5 +161,3 @@ INSERT INTO alimento (nombre, kcal, proteinas, carbohidratos, grasas) VALUES
 ('Leche semidesnatada', 46, 3.3, 5.0, 1.6),
 ('Leche entera', 61, 3.2, 5.0, 3.3),
 ('Cuajada', 98, 5.5, 4.0, 6.0);
-
-select * from alimento where id_alimento = 1;

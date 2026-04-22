@@ -1,9 +1,9 @@
 package paqueteVO;
-public class Rregistro_diario_comidaVO {
+public class Registro_diario_comidaVO {
     private int registro_id;
     private int id_comida;
 
-    public Rregistro_diario_comidaVO(int id_comida, int registro_id) {
+    public Registro_diario_comidaVO(int id_comida, int registro_id) {
         this.id_comida = id_comida;
         this.registro_id = registro_id;
     }

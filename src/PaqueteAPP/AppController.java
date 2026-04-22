@@ -1,25 +1,30 @@
 package PaqueteAPP;
 
-import paqueteDAO.UserDAO;
+import PaqueteControl.Conexion;
 import paqueteDAO.ComidaDAO;
-import paqueteVO.UserVO;
+import paqueteDAO.UserDAO;
 import paqueteVO.ComidaVO;
+import paqueteVO.UserVO;
 
+import java.sql.Connection;
 import java.util.List;
 import java.util.Scanner;
 <<<<<<< HEAD
 =======
 
+<<<<<<< HEAD
 import PaqueteControl.Conexion;
 
 >>>>>>> master
 import java.sql.Connection;
 
+=======
+>>>>>>> master
 public class AppController {
 
-    private Scanner sc = new Scanner(System.in);
-    private UserDAO userDAO = new UserDAO();
-    private ComidaDAO comidaDAO = new ComidaDAO();
+    private final Scanner sc = new Scanner(System.in);
+    private final UserDAO userDAO = new UserDAO();
+    private final ComidaDAO comidaDAO = new ComidaDAO();
 
     public void iniciar() {
         int opcion;
@@ -27,6 +32,7 @@ public class AppController {
         do {
             mostrarMenu();
             opcion = sc.nextInt();
+            sc.nextLine();
 
             switch (opcion) {
                 case 1:
@@ -62,7 +68,7 @@ public class AppController {
                     System.out.println("Saliendo...");
                     break;
                 default:
-                    System.out.println("Opción inválida");
+                    System.out.println("Opcion invalida");
             }
 
         } while (opcion != 0);
@@ -86,14 +92,11 @@ public class AppController {
     }
 
     private void listarUsuarios() {
-        try {
-            Connection con = Conexion.getConexion();
+        try (Connection con = Conexion.getConexion()) {
             List<UserVO> usuarios = userDAO.obtenerUsuarios(con);
-
             for (UserVO u : usuarios) {
                 System.out.println(u);
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -101,16 +104,14 @@ public class AppController {
 
     private void registrarComida() {
         try {
-            System.out.println("Nombre comida:");
-            String nombre = sc.next();
+            System.out.println("Tipo comida (ej: desayuno/comida/cena):");
+            String tipo = sc.nextLine();
 
-            System.out.println("Calorías:");
-            int calorias = sc.nextInt();
+            ComidaVO comida = new ComidaVO(tipo, 'S');
 
-            ComidaVO comida = new ComidaVO(nombre, calorias);
-
-            Connection con = Conexion.getConexion();
-            comidaDAO.insertarComida(con, comida);
+            try (Connection con = Conexion.getConexion()) {
+                comidaDAO.insertarComida(con, comida);
+            }
 
             System.out.println("Comida registrada!");
 
@@ -120,20 +121,33 @@ public class AppController {
     }
 
     private void verMacros() {
-        try {
-            Connection con = Conexion.getConexion();
+        try (Connection con = Conexion.getConexion()) {
             List<ComidaVO> comidas = comidaDAO.obtenerComidas(con);
 
-            int totalCalorias = 0;
-
+            System.out.println("Comidas registradas: " + comidas.size());
             for (ComidaVO c : comidas) {
-                totalCalorias += c.getCalorias();
+                System.out.println(c.getId_comida() + " - " + c.getTipoComida() + " (" + c.getVisiblesn() + ")");
             }
-
-            System.out.println("Calorías totales: " + totalCalorias);
 
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
+    private void registrarDieta() {
+        System.out.println("Registrar dieta: no implementado");
+    }
+
+    private void registrarAlimento() {
+        System.out.println("Registrar alimento: no implementado");
+    }
+
+    private void objetivoDiario() {
+        System.out.println("Objetivo diario: no implementado");
+    }
+
+    private void registroDiario() {
+        System.out.println("Registro diario: no implementado");
+    }
 }
+

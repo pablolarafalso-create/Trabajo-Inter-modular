@@ -10,6 +10,14 @@ public class ComidaVO {
         this.tipoComida = tipoComida;
         this.visiblesn = visiblesn;
     }
+
+    public ComidaVO(String tipoComida, char visiblesn) {
+        this(0, tipoComida, visiblesn);
+    }
+
+    public ComidaVO(String tipoComida) {
+        this(0, tipoComida, 'S');
+    }
     
     public int getId_comida() {
         return id_comida;

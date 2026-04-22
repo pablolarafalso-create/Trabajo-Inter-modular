@@ -1,25 +1,57 @@
 package paqueteDAO;
 
 import PaqueteControl.Conexion;
+import paqueteVO.UserVO;
+
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import paqueteVO.UserVO;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UserDAO {
 
-    // Método para registrar un usuario
+    public List<UserVO> obtenerUsuarios(Connection con) {
+        List<UserVO> usuarios = new ArrayList<>();
+        String sql = "SELECT id_user, nombre, apellidos, email, contraseÃ±a, fecha_nacimiento, altura, peso, fechaCreacion, racha FROM usuario";
+
+        try (PreparedStatement ps = con.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+                Timestamp ts = rs.getTimestamp("fechaCreacion");
+                usuarios.add(new UserVO(
+                    rs.getString("apellidos"),
+                    rs.getString("contraseÃ±a"),
+                    rs.getString("email"),
+                    rs.getInt("id_user"),
+                    rs.getString("nombre"),
+                    rs.getDate("fecha_nacimiento").toLocalDate(),
+                    rs.getDouble("altura"),
+                    rs.getDouble("peso"),
+                    ts != null ? ts.toLocalDateTime().toLocalDate() : null,
+                    rs.getInt("racha")
+                ));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return usuarios;
+    }
+
+    // MÃ©todo para registrar un usuario
     public boolean registrarUsuario(UserVO user) {
-        // SQL sin id_user porque la base de datos lo genera automáticamente (AUTO_INCREMENT)
-        String sqluser = "INSERT INTO usuarios (apellidos, contraseña, email, nombre, fecha_nacimiento, altura, peso, fechaCreacion, racha) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        
+        String sqluser = "INSERT INTO usuario (apellidos, contraseÃ±a, email, nombre, fecha_nacimiento, altura, peso, fechaCreacion, racha) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
         try (Connection con = Conexion.getConnection();
-            PreparedStatement ps = con.prepareStatement(sqluser)) {
-            
-            // Mapeamos los datos del objeto al SQL
+             PreparedStatement ps = con.prepareStatement(sqluser)) {
+
             ps.setString(1, user.getApellidos());
-            ps.setString(2, user.getContraseña());
+            ps.setString(2, user.getContrasena());
             ps.setString(3, user.getEmail());
             ps.setString(4, user.getNombre());
             ps.setDate(5, Date.valueOf(user.getFecha_nacimiento()));
@@ -27,33 +59,31 @@ public class UserDAO {
             ps.setDouble(7, user.getPeso());
             ps.setDate(8, Date.valueOf(user.getFechaCreacion()));
             ps.setInt(9, user.getRacha());
-            
+
             int filasAfectadas = ps.executeUpdate();
             return filasAfectadas > 0;
-            
+
         } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
     }
 
-    // Método que busca si un usuario existe
+    // MÃ©todo que busca si un usuario existe
     public UserVO validarUsuario(String email, String password) {
-        String sqluser = "SELECT * FROM usuarios WHERE email = ? AND contraseña = ?";
-        
+        String sqluser = "SELECT * FROM usuario WHERE email = ? AND contraseÃ±a = ?";
+
         try (Connection con = Conexion.getConnection();
-            PreparedStatement ps = con.prepareStatement(sqluser)) {
-            
+             PreparedStatement ps = con.prepareStatement(sqluser)) {
+
             ps.setString(1, email);
             ps.setString(2, password);
-            
+
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
-                    // AQUÍ USAMOS EL ORDEN EXACTO DE TU CONSTRUCTOR DE UserVO:
-                    // (apellidos, contraseña, email, id_user, nombre, fecha_nacimiento, altura, peso, fechaCreacion, racha)
                     return new UserVO(
                         rs.getString("apellidos"),
-                        rs.getString("contraseña"),
+                        rs.getString("contraseÃ±a"),
                         rs.getString("email"),
                         rs.getInt("id_user"),
                         rs.getString("nombre"),
@@ -68,35 +98,30 @@ public class UserDAO {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         return null;
     }
 
-    public boolean  actualizarUsuario(UserVO user){
-        // La sentencia UPDATE modifica los campos específicos donde coincida el id_user
-        String sqluser = "UPDATE usuarios SET nombre = ?, apellidos = ?, email = ?, contraseña = ?, " +
-                    "fecha_nacimiento = ?, altura = ?, peso = ?, fechaCreacion = ?, racha = ? " +
-                    "WHERE id_user = ?";
+    public boolean actualizarUsuario(UserVO user){
+        String sqluser = "UPDATE usuario SET nombre = ?, apellidos = ?, email = ?, contraseÃ±a = ?, " +
+            "fecha_nacimiento = ?, altura = ?, peso = ?, fechaCreacion = ?, racha = ? " +
+            "WHERE id_user = ?";
 
         try (Connection con = Conexion.getConnection();
-        PreparedStatement ps = con.prepareStatement(sqluser)){
-            // Asignamos los nuevos valores a los parámetros
+             PreparedStatement ps = con.prepareStatement(sqluser)){
+
             ps.setString(1, user.getNombre());
             ps.setString(2, user.getApellidos());
             ps.setString(3, user.getEmail());
-            ps.setString(4, user.getContraseña());
+            ps.setString(4, user.getContrasena());
             ps.setDate(5, Date.valueOf(user.getFecha_nacimiento()));
             ps.setDouble(6, user.getAltura());
             ps.setDouble(7, user.getPeso());
             ps.setDate(8, Date.valueOf(user.getFechaCreacion()));
             ps.setInt(9, user.getRacha());
-
-            // El id_user va en el parámetro 10, correspondiente al WHERE
             ps.setInt(10,user.getId_user());
 
-
-
-            int filasAfectadas  = ps.executeUpdate();
-
+            ps.executeUpdate();
             return true;
 
         } catch (Exception e) {

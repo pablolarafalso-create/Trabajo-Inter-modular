@@ -1,8 +1,6 @@
 package paqueteDAO;
 
 import PaqueteControl.Conexion;
-import paqueteVO.UserVO;
-
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -10,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+import paqueteVO.UserVO;
 
 public class UserDAO {
 
@@ -24,7 +23,7 @@ public class UserDAO {
                 Timestamp ts = rs.getTimestamp("fechaCreacion");
                 usuarios.add(new UserVO(
                     rs.getString("apellidos"),
-                    rs.getString("contraseÃ±a"),
+                    rs.getString("contrase±Ãa"),
                     rs.getString("email"),
                     rs.getInt("id_user"),
                     rs.getString("nombre"),
